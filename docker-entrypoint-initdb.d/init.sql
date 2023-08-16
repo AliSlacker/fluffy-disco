@@ -1,0 +1,8 @@
+CREATE DATABASE IF NOT EXISTS phonebook;
+USE phonebook;
+
+CREATE TABLE IF NOT EXISTS contacts (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255),
+  number VARCHAR(11)
+);

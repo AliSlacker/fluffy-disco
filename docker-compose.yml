@@ -1,0 +1,26 @@
+version: "3"
+services:
+  apps:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    command: >
+      /bin/sh -c "
+        echo Waiting for db service start...;
+        while ! nc -z db 3306;
+        do
+          sleep 1;
+        done;
+        npm start
+      "
+    depends_on:
+      - db
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
