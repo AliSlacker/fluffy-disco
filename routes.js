@@ -43,8 +43,42 @@ async function routes (fastify, options) {
         }
     });
 
+  const putSchema = {
+    schema: {
+      body: {
+        allOf: [{
+          type: "object",
+          properties: {
+            name: { type: "string" },
+            number: { type: "string" }
+          }
+        },
+        {
+          anyOf: [{
+            properties: {
+              name: {
+                $ref: "#/definitions/nonEmptyString"
+              }
+            }, required: ["name"]
+          }, {
+            properties: {
+              number: {
+                $ref: "#/definitions/nonEmptyString"
+              }
+            }, required: ["number"]
+          }]
+        }],
+        definitions: {
+          nonEmptyString: {
+            type: "string",
+            minLength: 1
+          }
+        }
+      }
+    }
+  }
     // name is not unique had to use id to update a record
-    fastify.put("/contacts/:id", addSchema, async (request, reply) => {
+    fastify.put("/contacts/:id", putSchema, async (request, reply) => {
       try{
         const id = parseInt(request.params.id)
         const {name, number} = request.body
