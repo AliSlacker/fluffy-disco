@@ -52,6 +52,11 @@ async function routes (fastify, options) {
           "UPDATE contacts set name=?, number=? WHERE id = ?", 
           [name,number,id]
         );
+        if(result[0].affectedRows == 0){
+          let err = new Error("id not found");
+          err.statusCode = 404;
+          throw err;
+        }
         reply.send(result);
       }
       catch(error){
@@ -77,6 +82,11 @@ async function routes (fastify, options) {
         const result = await fastify.mysql.query(
           "DELETE FROM contacts WHERE id = ?", id
         );
+        if(result[0].affectedRows == 0){
+          let err = new Error("id not found");
+          err.statusCode = 404;
+          throw err;
+        }
         reply.send(result);
       }
       catch(error){
