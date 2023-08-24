@@ -62,7 +62,7 @@ async function routes (fastify, options) {
     fastify.get('/contacts/:name', async (request, reply) => {
       try{
         const [rows, fields] = await fastify.mysql.query(
-            'SELECT number FROM contacts where name=?', [request.params.name]
+            'SELECT name, number FROM contacts where name like ?', [`%${request.params.name}%`]
           )
             reply.send(rows)
         }
