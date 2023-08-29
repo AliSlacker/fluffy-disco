@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@fastify/mysql": "^4.1.0",
+    "@fastify/static": "^6.10.2",
     "fastify": "^4.21.0"
   }
 }

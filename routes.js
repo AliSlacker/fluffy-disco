@@ -127,6 +127,10 @@ async function routes (fastify, options) {
         reply.send(error);
       }
     })
+
+  fastify.get("/client", async (request, reply) => {
+    return reply.sendFile('test.html');
+  })
 }
 
 export default routes
