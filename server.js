@@ -15,7 +15,6 @@ const fastify = Fastify({
 
 fastify.register(dbConnector)
 fastify.register(routes)
-
 fastify.register(fStatic,{root: path.join(__dirname, 'public')})
 
 

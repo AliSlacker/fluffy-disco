@@ -1,3 +1,5 @@
+import {addSchema, putSchema} from './Schema.js'
+
 async function routes (fastify, options) {
 
     fastify.get('/', async (request, reply) => {
@@ -16,19 +18,6 @@ async function routes (fastify, options) {
           }
     })
 
-    const addSchema = {
-      schema: {
-        body: {
-          type: 'object',
-          required: ['name', 'number'],
-          properties: {
-            name: { type: 'string', pattern: "\\S+" }, //pattern for non empty strings
-            number: { type: 'string', pattern: "^\\d+$" } //pattern for string containing only numbers
-          }
-        }
-      }
-    }
-
     fastify.post("/contacts", addSchema, async (request, reply) => {
         try{
           const {name, number} = request.body;
@@ -43,40 +32,6 @@ async function routes (fastify, options) {
         }
     });
 
-  const putSchema = {
-    schema: {
-      body: {
-        allOf: [{
-          type: "object",
-          properties: {
-            name: { type: "string" },
-            number: { type: "string" }
-          }
-        },
-        {
-          anyOf: [{
-            properties: {
-              name: {
-                $ref: "#/definitions/nonEmptyString"
-              }
-            }, required: ["name"]
-          }, {
-            properties: {
-              number: {
-                $ref: "#/definitions/nonEmptyString"
-              }
-            }, required: ["number"]
-          }]
-        }],
-        definitions: {
-          nonEmptyString: {
-            type: "string",
-            minLength: 1
-          }
-        }
-      }
-    }
-  }
     // name is not unique had to use id to update a record
     fastify.put("/contacts/:id", putSchema, async (request, reply) => {
       try{
