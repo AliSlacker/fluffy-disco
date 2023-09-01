@@ -86,6 +86,14 @@ async function routes (fastify, options) {
   fastify.get("/client", async (request, reply) => {
     return reply.sendFile('test.html');
   })
+
+  fastify.get("/client/add", async (request, reply) => {
+    return reply.sendFile('test.html');
+  })
+
+  fastify.get("/client/edit", async (request, reply) => {
+    return reply.sendFile('test.html');
+  })
 }
 
 export default routes
