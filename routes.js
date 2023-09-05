@@ -91,7 +91,7 @@ async function routes (fastify, options) {
     return reply.sendFile('test.html');
   })
 
-  fastify.get("/client/edit", async (request, reply) => {
+  fastify.get("/client/edit/:id", async (request, reply) => {
     return reply.sendFile('test.html');
   })
 }
