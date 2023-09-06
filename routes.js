@@ -3,7 +3,7 @@ import {addSchema, putSchema} from './Schema.js'
 async function routes (fastify, options) {
 
     fastify.get('/', async (request, reply) => {
-        return { route: '/contacts' }
+        return { route: '127.0.0.1:3000/client' }
     })
 
     fastify.get('/contacts', async (request, reply) => {

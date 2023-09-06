@@ -10,7 +10,7 @@ const router ={
             a.addEventListener("click", event => {
                 event.preventDefault();
                 const href = event.target.getAttribute("href");
-                Router.go(href);
+                router.go(href);
             })
         })
         //respond to url changes
@@ -30,19 +30,22 @@ const router ={
             case "/client":
                 pageFound = true;
                 _app.elements.contactList.hidden = false;
-                _app.elements.form.hidden = true;
+                _app.elements.editForm.hidden = true;
+                _app.elements.insertForm.hidden = true;
                 _app.elements.pageNotFound.hidden = true;
                 break;
             case "/client/add":
                 pageFound = true;
-                _app.elements.form.hidden = false;
+                _app.elements.insertForm.hidden = false;
+                _app.elements.editForm.hidden = true;
                 _app.elements.contactList.hidden = true;
                 _app.elements.pageNotFound.hidden = true;
                 break;
             default:
                 if( new RegExp("^/client/edit/\\d+$").test(route)){
                     pageFound = true;
-                    _app.elements.form.hidden = false;
+                    _app.elements.editForm.hidden = false;
+                    _app.elements.insertForm.hidden = true;
                     _app.elements.contactList.hidden = true;
                     _app.elements.pageNotFound.hidden = true;
                 }

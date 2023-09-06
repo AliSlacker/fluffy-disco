@@ -7,19 +7,49 @@
 </head>
 
 <body>
-    <nav>
-        <input type="text" placeholder="Search..">
-        <a href="/client/add" >+</a>
-    </nav>
-    <contact-list></contact-list>
 
-    <form hidden>
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name"><br>
-        <label for="phone">Phone Number:</label><br>
-        <input type="tel" id="phone" name="phone"><br><br>
-        <input type="submit" value="Submit">
-    </form> 
+    <contact-list>
+        <nav>
+            <input type="text" placeholder="Search..">
+            <a href="/client/add" >+</a>
+        </nav>
+    </contact-list>
+
+    <edit-form hidden>
+        <form>
+            <nav>
+                <a href="/client" >back</a>
+            </nav>
+
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name"><br>
+            <label for="phone">Phone Number:</label><br>
+            <input type="tel" id="phone" name="phone"><br><br>
+            <tr>
+                <td>
+                    <input type="submit" value="Submit">
+                </td>
+                <td>
+                    <button> delete </button>
+                </td>
+            </tr>
+        </form>
+    </edit-form> 
+
+    <insert-form hidden>
+        <form>
+            <nav>
+                <a href="/client" >back</a>
+            </nav>
+
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name"><br>
+            <label for="phone">Phone Number:</label><br>
+            <input type="tel" id="phone" name="phone"><br><br>
+            <input type="submit" value="Submit">
+
+        </form>
+    </insert-form>
 
     <h1 hidden>404 page not found</h1>
 </body>

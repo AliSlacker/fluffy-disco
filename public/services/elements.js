@@ -1,6 +1,7 @@
 const elements = {
     contactList: null,
-    form: null,
+    insertForm: null,
+    editForm: null,
     pageNotFound: null,
     selectedContact: null
 }
