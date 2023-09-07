@@ -25,11 +25,11 @@ export default class contactList extends HTMLElement {
 
         window.addEventListener("contactInserted", (e) => {
             const listItem = document.createElement('li');
-            listItem.textContent = `name:${e.name} , number:${e.number}`;
+            listItem.textContent = `name:${e.detail.name} , number:${e.detail.number}`;
             listItem.addEventListener("click", (event) => {
                 _app.elements.selectedContact = event.target;
-                _app.elements.editForm.dataset.id = e.id;
-                router.go(`/client/edit/${e.id}`);
+                _app.elements.editForm.dataset.id = e.detail.id;
+                router.go(`/client/edit/${e.detail.id}`);
             })
             _app.elements.contactList.appendChild(listItem);
         });

@@ -11,7 +11,9 @@ export default class insertForm extends HTMLElement {
             let name = this.querySelector('#name').value;
             let number = this.querySelector('#phone').value;
             api.insertContact(name, number).then(() => {
-                router.go('/client');
+                router.go('/client')
+            }).catch(err => {
+                alert(err);
             })
         })
     }
