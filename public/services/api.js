@@ -16,6 +16,7 @@ const api = {
                 mid = Math.floor((low + high) / 2);
                 if (_app.contacts[mid].id == id) {
                     _app.contacts.splice(mid, 1);
+                    break;
                 }
                 else if (_app.contacts[mid].id < id) {
                     low = mid + 1;

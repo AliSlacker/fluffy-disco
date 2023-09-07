@@ -7,8 +7,9 @@ export default class editForm extends HTMLElement {
     }
 
     connectedCallback() {
-        this.querySelector('button').addEventListener('click', () =>{
-            api.deleteContact( _app.elements.form.dataset.id).then( () => {router.go('/client');});
+        this.querySelector('button').addEventListener('click', (e) =>{
+            e.preventDefault();
+            api.deleteContact( _app.elements.editForm.dataset.id).then( () => {router.go('/client');});
         });
     }
 }
