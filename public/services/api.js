@@ -44,6 +44,20 @@ const api = {
         let id = responce[0].insertId;
         window.dispatchEvent(new CustomEvent("contactInserted", { detail: {id: id, name: name, number: number }}));
 
+    },
+
+    editContact: async (name, number, id) => {
+        let data = {name: name, number: number, id: id};
+        const result = await fetch(`http://127.0.0.1:3000/contacts/${id}`, {
+            method: 'put',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data) 
+        })
+        const responce = await result.json();
+        if (responce.statusCode > 399) {
+            throw new Error("something went wrong");
+        }
+        window.dispatchEvent(new CustomEvent("contactEdited", { detail: {name: name, number: number }}))
     }
 
 }

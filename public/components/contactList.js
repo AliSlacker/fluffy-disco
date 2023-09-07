@@ -33,6 +33,10 @@ export default class contactList extends HTMLElement {
             })
             _app.elements.contactList.appendChild(listItem);
         });
+
+        window.addEventListener("contactEdited", (e) => {
+            _app.elements.selectedContact.textContent = `name:${e.detail.name} , number:${e.detail.number}`;
+        })
     }
 }
 customElements.define("contact-list", contactList);
