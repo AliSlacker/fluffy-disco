@@ -47,6 +47,23 @@ const api = {
     },
 
     editContact: async (name, number, id) => {
+        let low = 0;
+        let high = _app.contacts.length - 1;
+        let mid;
+        while (low <= high) {
+            mid = Math.floor((low + high) / 2);
+            if (_app.contacts[mid].id == id) {
+                _app.contacts.splice(mid, 1);
+                break;
+            }
+            else if (_app.contacts[mid].id < id) {
+                low = mid + 1;
+            }
+            else {
+                high = mid - 1
+            }
+        }
+
         let data = {name: name, number: number, id: id};
         const result = await fetch(`http://127.0.0.1:3000/contacts/${id}`, {
             method: 'put',

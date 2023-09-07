@@ -1,3 +1,3 @@
 let contacts = null;
-
-export default contacts;
+let searchedContacts = null
+export  {contacts, searchedContacts};

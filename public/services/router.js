@@ -29,7 +29,7 @@ const router ={
         switch (route) {
             case "/client":
                 pageFound = true;
-                _app.elements.contactList.hidden = false;
+                _app.elements.contactList.parentElement.hidden = false;
                 _app.elements.editForm.hidden = true;
                 _app.elements.insertForm.hidden = true;
                 _app.elements.pageNotFound.hidden = true;
@@ -38,7 +38,7 @@ const router ={
                 pageFound = true;
                 _app.elements.insertForm.hidden = false;
                 _app.elements.editForm.hidden = true;
-                _app.elements.contactList.hidden = true;
+                _app.elements.contactList.parentElement.hidden = true;
                 _app.elements.pageNotFound.hidden = true;
                 break;
             default:
@@ -46,7 +46,7 @@ const router ={
                     pageFound = true;
                     _app.elements.editForm.hidden = false;
                     _app.elements.insertForm.hidden = true;
-                    _app.elements.contactList.hidden = true;
+                    _app.elements.contactList.parentElement.hidden = true;
                     _app.elements.pageNotFound.hidden = true;
                 }
                 break;
@@ -60,7 +60,7 @@ const router ={
         else{
             // show 404
             _app.elements.form.hidden = true;
-            _app.elements.contactList.hidden = true;
+            _app.elements.contactList.parentElement.hidden = true;
             _app.elements.pageNotFound.hidden = false;
         }
     }
