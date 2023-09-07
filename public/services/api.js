@@ -40,9 +40,9 @@ const api = {
         if (responce.statusCode > 399) {
             throw new Error("something went wrong");
         }
-            let id = responce[0].insertId;
-            window.dispatchEvent(new Event("contactInserted", {detail: {id: id, name: name, number: number} }));
-        
+        let id = responce[0].insertId;
+        window.dispatchEvent(new CustomEvent("contactInserted", { detail: {id: id, name: name, number: number }}));
+
     }
 
 }
