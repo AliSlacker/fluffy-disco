@@ -53,7 +53,8 @@ const api = {
         while (low <= high) {
             mid = Math.floor((low + high) / 2);
             if (_app.contacts[mid].id == id) {
-                _app.contacts.splice(mid, 1);
+                _app.contacts[mid].name = name;
+                _app.contacts[mid].number = number;
                 break;
             }
             else if (_app.contacts[mid].id < id) {

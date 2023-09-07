@@ -8,14 +8,7 @@ export default class contactList extends HTMLElement {
     connectedCallback() {
         window.addEventListener("contactsLoaded", () => {
             for (const contact of _app.contacts) {
-                const listItem = document.createElement('li');
-                listItem.textContent = `name:${contact.name} , number:${contact.number}`;
-                listItem.addEventListener("click", (event) => {
-                    _app.elements.selectedContact = event.target;
-                    _app.elements.editForm.dataset.id = contact.id;
-                    router.go(`/client/edit/${contact.id}`);
-                })
-                _app.elements.contactList.appendChild(listItem);
+                this.render(contact.name, contact.number, contact.id, _app.elements.contactList);
             }
         });
 
@@ -24,15 +17,8 @@ export default class contactList extends HTMLElement {
         });
 
         window.addEventListener("contactInserted", (e) => {
-            _app.contacts.push({name: e.detail.name, number: e.detail.number, id: e.detail.id});
-            const listItem = document.createElement('li');
-            listItem.textContent = `name:${e.detail.name} , number:${e.detail.number}`;
-            listItem.addEventListener("click", (event) => {
-                _app.elements.selectedContact = event.target;
-                _app.elements.editForm.dataset.id = e.detail.id;
-                router.go(`/client/edit/${e.detail.id}`);
-            })
-            _app.elements.contactList.appendChild(listItem);
+            _app.contacts.push({ name: e.detail.name, number: e.detail.number, id: e.detail.id });
+            this.render(e.detail.name, e.detail.number, e.detail.id, _app.elements.contactList);
         });
 
         window.addEventListener("contactEdited", (e) => {
@@ -52,19 +38,23 @@ export default class contactList extends HTMLElement {
                     return contact.name.includes(searchWord);
                 })
                 for (const contact of _app.searchedContacts) {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = `name:${contact.name} , number:${contact.number}`;
-                    listItem.addEventListener("click", (event) => {
-                        _app.elements.selectedContact = event.target;
-                        _app.elements.editForm.dataset.id = contact.id;
-                        router.go(`/client/edit/${contact.id}`);
-                    })
-                    _app.elements.searchedList.appendChild(listItem);
+                    this.render(contact.name, contact.number, contact.id, _app.elements.searchedList);
                 }
                 _app.elements.contactList.hidden = true;
                 _app.elements.searchedList.hidden = false;
             }
         })
+    }
+
+    render(name, number, id, target) {
+        const listItem = document.createElement('li');
+        listItem.textContent = `name:${name} , number:${number}`;
+        listItem.addEventListener("click", (event) => {
+            _app.elements.selectedContact = event.target;
+            _app.elements.editForm.dataset.id = id;
+            router.go(`/client/edit/${id}`);
+        })
+        target.appendChild(listItem);
     }
 }
 customElements.define("contact-list", contactList);
