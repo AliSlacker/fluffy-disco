@@ -35,7 +35,6 @@ async function routes (fastify, options) {
     // name is not unique had to use id to update a record
     fastify.put("/contacts/:id", putSchema, async (request, reply) => {
       try{
-        //to do if one of the fields is empty just update the other one not both 
         const id = parseInt(request.params.id)
         const {name, number} = request.body;
         let result;
