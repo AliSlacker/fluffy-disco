@@ -37,11 +37,27 @@ async function routes (fastify, options) {
       try{
         //to do if one of the fields is empty just update the other one not both 
         const id = parseInt(request.params.id)
-        const {name, number} = request.body
-        const result = await fastify.mysql.query(
-          "UPDATE contacts set name=?, number=? WHERE id = ?", 
-          [name,number,id]
-        );
+        const {name, number} = request.body;
+        let result;
+        if (name == ""){
+          console.log(`name: ${name}, number: ${number}`);
+          result = await fastify.mysql.query(
+            "UPDATE contacts set number=? WHERE id = ?", 
+            [number,id]
+          );
+        }
+        else if (number == ""){
+          result = await fastify.mysql.query(
+            "UPDATE contacts set name=? WHERE id = ?", 
+            [name,id]
+          );
+        }
+        else {
+          result = await fastify.mysql.query(
+            "UPDATE contacts set name=?, number=? WHERE id = ?", 
+            [name,number,id]
+          );
+        }
         if(result[0].affectedRows == 0){
           let err = new Error("id not found");
           err.statusCode = 404;
