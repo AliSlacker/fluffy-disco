@@ -9,22 +9,7 @@ const api = {
         const result = await fetch(`http://127.0.0.1:3000/contacts/${id}`, { method: 'DELETE' });
         id = parseInt(id);
         if (result.ok) {
-            let low = 0;
-            let high = _app.contacts.length - 1;
-            let mid;
-            while (low <= high) {
-                mid = Math.floor((low + high) / 2);
-                if (_app.contacts[mid].id == id) {
-                    _app.contacts.splice(mid, 1);
-                    break;
-                }
-                else if (_app.contacts[mid].id < id) {
-                    low = mid + 1;
-                }
-                else {
-                    high = mid - 1
-                }
-            }
+            _app.contacts.splice(api.binarySearch(id), 1);
             window.dispatchEvent(new Event("contactDeleted"));
         }
     },
@@ -47,23 +32,9 @@ const api = {
     },
 
     editContact: async (name, number, id) => {
-        let low = 0;
-        let high = _app.contacts.length - 1;
-        let mid;
-        while (low <= high) {
-            mid = Math.floor((low + high) / 2);
-            if (_app.contacts[mid].id == id) {
-                _app.contacts[mid].name = name;
-                _app.contacts[mid].number = number;
-                break;
-            }
-            else if (_app.contacts[mid].id < id) {
-                low = mid + 1;
-            }
-            else {
-                high = mid - 1
-            }
-        }
+        const index = api.binarySearch(id);
+        _app.contacts[index].name = name;
+        _app.contacts[index].number = number;
 
         let data = {name: name, number: number, id: id};
         const result = await fetch(`http://127.0.0.1:3000/contacts/${id}`, {
@@ -76,8 +47,25 @@ const api = {
             throw new Error("something went wrong");
         }
         window.dispatchEvent(new CustomEvent("contactEdited", { detail: {name: name, number: number }}))
-    }
+    },
 
+    binarySearch: (id) => {
+        let low = 0;
+        let high = _app.contacts.length - 1;
+        let mid;
+        while (low <= high) {
+            mid = Math.floor((low + high) / 2);
+            if (_app.contacts[mid].id == id) {
+                return mid;
+            }
+            else if (_app.contacts[mid].id < id) {
+                low = mid + 1;
+            }
+            else {
+                high = mid - 1
+            }
+        }
+    }
 }
 
 export default api;
