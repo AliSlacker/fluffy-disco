@@ -33,6 +33,14 @@ const api = {
 
     editContact: async (name, number, id) => {
         const index = api.binarySearch(id);
+
+        const nonEmptyName = /\S+/;
+        if (!nonEmptyName.test(name))
+            name = _app.contacts[index].name;
+        const nonEmptyNumber = /\d+/;
+        if (!nonEmptyNumber.test(number))
+            number = _app.contacts[index].number;
+
         _app.contacts[index].name = name;
         _app.contacts[index].number = number;
 
