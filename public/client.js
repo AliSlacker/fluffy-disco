@@ -6,10 +6,20 @@ import contactList from './components/contactList.js';
 import editForm from './components/editForm.js'
 import insertForm from './components/insertForm.js'
 
-window._app = {}
-_app.elements = elements;
-_app.contacts  = contacts;
-_app.searchedContacts = searchedContacts;
+
+/**
+ * global namespace called app created using window
+ * @namespace
+ * @property {module:services/elements~Elements} elements
+ * @property {array<module:services/data~Contact>} contacts 
+ * @property {array<module:services/data~Contact>} searchedContacts 
+ */
+window._app = {
+    elements: elements,
+    contacts: contacts,
+    searchedContacts: searchedContacts    
+}
+
 
 window.addEventListener("DOMContentLoaded", () => {
     _app.elements.contactList = document.querySelector("#contact-list");

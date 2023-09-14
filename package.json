@@ -5,6 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
+    "document": "jsdoc -c ./jsdoc/jsdoc.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,5 +15,8 @@
     "@fastify/mysql": "^4.1.0",
     "@fastify/static": "^6.10.2",
     "fastify": "^4.21.0"
+  },
+  "devDependencies": {
+    "jsdoc": "^4.0.2"
   }
 }

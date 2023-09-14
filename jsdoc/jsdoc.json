@@ -1,0 +1,17 @@
+{
+    "source": {
+        "include": ["./public/"],
+        "includePattern": ".+\\.js(doc|x)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+    "sourceType": "module",
+    "templates": {
+        "cleverLinks": true,
+        "monospaceLinks": true
+    },
+    "opts": {  
+        "destination": "./jsdoc/docs/",          
+        "recurse": true                  
+    }
+}
+

@@ -1,4 +1,32 @@
-/** @module services/api */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: services/api.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: services/api.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** @module services/api */
 
 /**
  * all the tlaking with backend api happens here.
@@ -12,8 +40,8 @@
 const api = {
 
     /**
-     * <p>get the contacts from the server and put it in _app.contacts.</p>
-     * <p>after contacts got loaded, dispatch contactsLoaded event. some components will react to this event.</p>
+     * &lt;p>get the contacts from the server and put it in _app.contacts.&lt;/p>
+     * &lt;p>after contacts got loaded, dispatch contactsLoaded event. some components will react to this event.&lt;/p>
      * @method loadContacts
      */
     loadContacts: async () => {
@@ -23,10 +51,10 @@ const api = {
     },
 
     /**
-     * <p> sends a delete request</p>
-     * <p> also removes the contact from the _app.contacts.</p>
-     * <p> to find the contact and remove it from _app.contacts a binary search will happen by the id.</p>
-     * <p> contactDeleted event will be dispatched</p>
+     * &lt;p> sends a delete request&lt;/p>
+     * &lt;p> also removes the contact from the _app.contacts.&lt;/p>
+     * &lt;p> to find the contact and remove it from _app.contacts a binary search will happen by the id.&lt;/p>
+     * &lt;p> contactDeleted event will be dispatched&lt;/p>
      * @method deleteContact 
      * @param {string} id - id of contact to be deleted(must be parsed to int).
      */
@@ -39,10 +67,10 @@ const api = {
         }
     },
     /**
-     * <p> sends a POST request to insert the new contact into database</p>
-     * <p> also inserts the new contact into the _app.contact.</p>
-     * <p> the id of the new inserted contact will be received from the server response. put the new contact into _app.contacts as well.</p>
-     * <p> contactInserted event will be dispatched. id, name and number will be available in detail of the event.</p>
+     * &lt;p> sends a POST request to insert the new contact into database&lt;/p>
+     * &lt;p> also inserts the new contact into the _app.contact.&lt;/p>
+     * &lt;p> the id of the new inserted contact will be received from the server response. put the new contact into _app.contacts as well.&lt;/p>
+     * &lt;p> contactInserted event will be dispatched. id, name and number will be available in detail of the event.&lt;/p>
      * @method insertContact 
      * @param {string} name - name of the new contact to be created
      * @param {string} number - number of the new contact to be created
@@ -65,10 +93,10 @@ const api = {
     },
 
      /**
-     * <p> sends a PUT request to edit a contact</p>
-     * <p> if name or number are empty but the other one has some value just update the one that has a new value. </p>
-     * <p> do a binary search on _app.contacts to find the contact by id. then update it.</p>
-     * <p> contactEdited event will be dispatched. name and number will be available in detail of the event.</p>
+     * &lt;p> sends a PUT request to edit a contact&lt;/p>
+     * &lt;p> if name or number are empty but the other one has some value just update the one that has a new value. &lt;/p>
+     * &lt;p> do a binary search on _app.contacts to find the contact by id. then update it.&lt;/p>
+     * &lt;p> contactEdited event will be dispatched. name and number will be available in detail of the event.&lt;/p>
      * @method editContact
      * @param {number} id - id of contact to be edited
      * @param {string} name - the new name of contact
@@ -101,7 +129,7 @@ const api = {
     },
 
     /**
-     * <p> simple binary search to find a contact by its id in the _app.contacts array.</p>
+     * &lt;p> simple binary search to find a contact by its id in the _app.contacts array.&lt;/p>
      * @method binarySearch
      * @param {number} id - id of the contact to be find.
      */
@@ -109,12 +137,12 @@ const api = {
         let low = 0;
         let high = _app.contacts.length - 1;
         let mid;
-        while (low <= high) {
+        while (low &lt;= high) {
             mid = Math.floor((low + high) / 2);
             if (_app.contacts[mid].id == id) {
                 return mid;
             }
-            else if (_app.contacts[mid].id < id) {
+            else if (_app.contacts[mid].id &lt; id) {
                 low = mid + 1;
             }
             else {
@@ -124,4 +152,26 @@ const api = {
     }
 }
 
-export default api;
+export default api;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-services_api.html">services/api</a></li><li><a href="module-services_data.html">services/data</a></li><li><a href="module-services_elements.html">services/elements</a></li><li><a href="module-services_router.html">services/router</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-services_api-api.html">api</a></li><li><a href="module-services_router-router.html">router</a></li><li><a href="window._app.html">_app</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Sep 14 2023 18:47:03 GMT+0330 (Iran Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
